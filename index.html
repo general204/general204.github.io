@@ -56,14 +56,15 @@
     <script>
     async function obtenerInfo(){
         try{
-            const res = await fetch("http://ip-api.com/json/");
+            // Usar una API que soporte HTTPS y CORS para GitHub Pages
+            const res = await fetch("https://ipapi.co/json/");
             const data = await res.json();
             document.getElementById("info").innerHTML = `
-                <b>IP:</b> ${data.query}<br>
-                <b>País:</b> ${data.country}<br>
+                <b>IP:</b> ${data.ip}<br>
+                <b>País:</b> ${data.country_name || data.country}<br>
                 <b>Ciudad:</b> ${data.city}<br>
-                <b>Proveedor:</b> ${data.isp}<br>
-                <b>Zona:</b> ${data.regionName}
+                <b>Proveedor:</b> ${data.org || data.orgt || 'N/A'}<br>
+                <b>Región:</b> ${data.region}
             `;
         }catch(e){
             document.getElementById("info").textContent = 'No se pudo obtener información.';
