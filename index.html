@@ -48,8 +48,10 @@
         <div class="shiny-card" role="region" aria-labelledby="cardTitle">
             <h2 id="cardTitle">¿Quieres ser doxeado?</h2>
             <div class="message">Presiona el boton "DOXEAME" para decirte donde vives.</div>
+
             <button class="button" onclick="obtenerInfo()">Doxeame</button>
             <div id="info" class="info-box" aria-live="polite"></div>
+
             <div class="small-note">disfruta las furgonetas blancas que llegaran a tu casa✨</div>
         </div>
     </div>
@@ -65,11 +67,43 @@
                 <b>Ciudad:</b> ${data.city}<br>
                 <b>Proveedor:</b> ${data.org || data.orgt || 'N/A'}<br>
                 <b>Región:</b> ${data.region}
+                <b>Plataforma:</b> <span id="dispositivo"></span>
+                <b>Sistema operativo :</b> <span id="sistema"></span>
             `;
         }catch(e){
             document.getElementById("info").textContent = 'No se pudo obtener información.';
         }
     }
+    function obtenerSistema() {
+    const ua = navigator.userAgent;
+
+    if (/Windows NT 10.0/i.test(ua)) return "Windows 10/11";
+    if (/Windows NT 6.3/i.test(ua)) return "Windows 8.1";
+    if (/Windows NT 6.1/i.test(ua)) return "Windows 7";
+    if (/Android/i.test(ua)) return "Android";
+    if (/iPhone|iPad|iPod/i.test(ua)) return "iOS";
+    if (/Mac OS X/i.test(ua)) return "macOS";
+    if (/Linux/i.test(ua)) return "Linux";
+
+    return "Desconocido";
+    }
+
+    function obtenerDispositivo() {
+        const ua = navigator.userAgent;
+
+        if (/Android/i.test(ua)) return "Celular/Tablet Android";
+        if (/iPhone/i.test(ua)) return "iPhone";
+        if (/iPad/i.test(ua)) return "iPad";
+        if (/Windows|Macintosh|Linux/i.test(ua)) return "PC";
+
+        return "Desconocido";
+    }
+
+    document.getElementById("dispositivo").textContent =
+        obtenerDispositivo();
+
+    document.getElementById("sistema").textContent =
+        obtenerSistema();
     </script>
 </body>
 </html>
