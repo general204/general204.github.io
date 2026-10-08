@@ -71,3 +71,19 @@ input[type="search"]:active {
   border-radius:20px;
 
 }
+.cloud{
+  transition:0.3s;
+}
+.cloud:hover{
+  transform: rotate(3deg) translateY(-50px);
+  transition: 0.3s ease 0.1s;
+}
+.cloud::after{
+  transition: 0.2s ease;
+
+
+}
+.cloud:active{
+  transform: rotate(-3deg) translateY(50px);
+  transition: 0.2s ease;
+}
