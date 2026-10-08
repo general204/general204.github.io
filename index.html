@@ -1,109 +1,193 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Te doxeo</title>
-    <style>
-        :root{--bg1:#6a00ff;--bg2:#9a4dff;--accent1:#00e5ff;--accent2:#00bcd4}
-        html,body{height:100%;margin:0}
-        body{
-            background:linear-gradient(180deg,#2b004d 0%, #1a0033 100%);
-            color:#fff;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            display:flex;align-items:center;justify-content:center;
-        }
-        .container{width:100%;max-width:980px;padding:24px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-height:100vh}
-        .shiny-card{
-            position:relative;
-            width:340px;
-            max-width:92%;
-            padding:26px;
-            border-radius:16px;
-            background:linear-gradient(135deg,var(--bg1),var(--bg2));
-            box-shadow:0 12px 40px rgba(90,0,120,0.55);
-            color:#fff;text-align:center;overflow:hidden
-        }
-        .shiny-card::before{
-            content:"";position:absolute;top:-40%;left:-60%;width:220%;height:220%;
-            background:linear-gradient(120deg,rgba(255,255,255,0.06) 0%,rgba(255,255,255,0.18) 50%,rgba(255,255,255,0.06) 100%);
-            transform:rotate(25deg);animation:shimmer 3s linear infinite;mix-blend-mode:overlay
-        }
-        @keyframes shimmer{0%{transform:translateX(-100%) rotate(25deg)}100%{transform:translateX(100%) rotate(25deg)}}
-        h2{margin:0 0 12px 0;font-size:1.2rem}
-        .message{font-size:1rem;margin-bottom:14px;position:relative;z-index:1}
-        .button{
-            z-index:1;position:relative;display:inline-block;padding:10px 18px;border-radius:10px;border:none;
-            background:linear-gradient(180deg,var(--accent1),var(--accent2));color:#071d2e;font-weight:700;cursor:pointer;
-            box-shadow:0 8px 18px rgba(0,0,0,0.28);transition:transform .12s ease,box-shadow .12s ease;
-        }
-        .button:active{transform:translateY(2px);box-shadow:0 4px 10px rgba(0,0,0,0.2)}
-        .info-box{margin-top:12px;background:rgba(255,255,255,0.06);padding:10px;border-radius:8px;font-size:0.95rem;z-index:1;position:relative}
-        .small-note{font-size:0.8rem;opacity:0.9;margin-top:10px;position:relative;z-index:1}
-        @media (max-width:420px){.shiny-card{padding:18px;border-radius:12px}.button{padding:9px 14px}}
-    </style>
-</head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GD Searcher </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 <body>
-    <div class="container">
-        <div class="shiny-card" role="region" aria-labelledby="cardTitle">
-            <h2 id="cardTitle">¿Quieres ser doxeado?</h2>
-            <div class="message">Presiona el boton "DOXEAME" para decirte donde vives.</div>
+  <div class="categorias" style="box-sizing: border-box; width: min(700px, calc(100% - 32px)); min-height: 180px; padding: 28px 32px; margin: 40px auto 0; background: linear-gradient(135deg, #1e1e1e, #29243a); border: 1px solid rgba(160, 120, 255, .25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, .3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+      <h1 style="left:100%;margin: 0; color: #f5f2ff; font-family: 'Russo One', sans-serif; font-size: clamp(24px, 5vw, 34px); letter-spacing: .06em; line-height: 1.15; text-shadow: 0 0 18px rgba(158, 104, 255, .35);">GD SEARCHER</h1><image style="width:30px;height:30px;" src="https://tse4.mm.bing.net/th/id/OIP.k0HdYV4_bmgFKnGtcHR46AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", draggable="false"></image>
+    <nav aria-label="Navegación principal" style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <button type="button" class="tab-button" id="tab-home" aria-selected="true" data-tab="home">🏠 HOME</button><button type="button" class="tab-button" id="tab-search" aria-selected="false" data-tab="search">🔍 SEARCH</button><button type="button" class="tab-button" id="tab-profiles" aria-selected="false" data-tab="profiles">👤 PROFILES</button><button type="button" class="tab-button" id="tab-about" aria-selected="false" data-tab="about">ℹ️ ABOUT</button><button class="tab-button" id="tab-configuration" aria-selected="false" data-tab="configuration"> ⚙️ Configuration</button>
+    </nav>
+  <!--|| CREAR FUNCION DE ORGANIZAR PESTAÑAS||-->
+  </div>
+  <div role="status" aria-label="Engine status: online" style="position: fixed; right: 2px; bottom: 5px; z-index: 10; display: inline-flex; align-items: center; gap: 10px; padding: 11px 16px; color: #e8fff4; background: rgba(18, 27, 25, .94); border: 1px solid rgba(92, 255, 174, .3); border-radius: 999px; box-shadow: 0 8px 28px rgba(0, 0, 0, .35), 0 0 18px rgba(49, 255, 153, .12); font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .04em;">
+    <span aria-hidden="true" style="width: 9px; height: 9px; flex: 0 0 10px; background: #48f59a; border-radius: 50%; box-shadow: 0 0 10px #48f59a;"></span>
+    <span>ENGINE ONLINE</span>
+  </div>
 
-            <button class="button" onclick="obtenerInfo()">Doxeame</button>
-            <div id="info" class="info-box" aria-live="polite"></div>
-
-            <div class="small-note">disfruta las furgonetas blancas que llegaran a tu casa✨</div>
-        </div>
-    </div>
-    <script>
-    async function obtenerInfo(){
-        try{
-            // Usar una API que soporte HTTPS y CORS para GitHub Pages
-            const res = await fetch("https://ipapi.co/json/");
-            const data = await res.json();
-            document.getElementById("info").innerHTML = `
-                <b>IP:</b> ${data.ip}<br>
-                <b>País:</b> ${data.country_name || data.country}<br>
-                <b>Ciudad:</b> ${data.city}<br>
-                <b>Proveedor:</b> ${data.org || data.orgt || 'N/A'}<br>
-                <b>Región:</b> ${data.region}<br></br>
-                <b>Plataforma:</b> <span id="dispositivo"></span>
-                <b>Sistema operativo :</b> <span id="sistema"></span>
-            `;
-        }catch(e){
-            document.getElementById("info").textContent = 'No se pudo obtener información.';
-        }
-    }
-    function obtenerSistema() {
-    const ua = navigator.userAgent;
-
-    if (/Windows NT 10.0/i.test(ua)) return "Windows 10/11";
-    if (/Windows NT 6.3/i.test(ua)) return "Windows 8.1";
-    if (/Windows NT 6.1/i.test(ua)) return "Windows 7";
-    if (/Android/i.test(ua)) return "Android";
-    if (/iPhone|iPad|iPod/i.test(ua)) return "iOS";
-    if (/Mac OS X/i.test(ua)) return "macOS";
-    if (/Linux/i.test(ua)) return "Linux";
-
-    return "Desconocido";
-    }
-
-    function obtenerDispositivo() {
-        const ua = navigator.userAgent;
-
-        if (/Android/i.test(ua)) return "Celular/Tablet Android";
-        if (/iPhone/i.test(ua)) return "iPhone";
-        if (/iPad/i.test(ua)) return "iPad";
-        if (/Windows|Macintosh|Linux/i.test(ua)) return "PC";
-
-        return "Desconocido";
-    }
-
-    document.getElementById("dispositivo").textContent =
-        obtenerDispositivo();
-
-    document.getElementById("sistema").textContent =
-        obtenerSistema();
-    </script>
+  <!--||EXPLICANDO COMO FUNCIONA MI WEB CULERA XD-->
+  <div class="content" style="box-sizing: border-box; width: min(650px, calc(100% - 32px)); min-height: 400px; margin: 40px auto; padding: 32px; color: #f5f2ff; font-family: 'Space Grotesk', sans-serif; background: rgba(18, 20, 34, 0.8); border: 1px solid rgba(160, 120, 255, 0.25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);">
+    <section class="tab-panel" id="panel-home"><h1 class="texto1">🏠 HOME</h1>
+    <p>You can save and play your favorite levels anytime,
+      just search a level or a profile if you want to find something specific.</p>
+    <image src="https://tse4.mm.bing.net/th/id/OIP.NMqh5-JMSNJIn4p5VqTFWAAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" draggable="false"></image>
+    <section aria-labelledby="guide-title" style="margin-top: 28px; padding: 20px; background: rgba(143, 85, 255, .08); border: 1px solid rgba(160, 120, 255, .2); border-radius: 12px; line-height: 1.6;">
+      <h2 id="guide-title">How this website works</h2>
+      <p>GD Searcher is a small interface for finding Geometry Dash levels and player profiles. Use the navigation buttons at the top to switch between pages; only the selected panel is shown.</p>
+      <ul>
+        <li><strong>Home:</strong> Introduction and the featured image.</li>
+        <li><strong>Search:</strong> Enter a level or other search term and press SEARCH. The current page provides the input interface; it does not yet connect to a search service.</li>
+        <li><strong>Profiles:</strong> A profile search field for finding players. It is currently a visual input and is not connected to player data.</li>
+        <li><strong>About:</strong> Brief information about GD Searcher.</li>
+        <li><strong>Configuration:</strong> Choose Spanish or English and switch between dark and light appearance.</li>
+      </ul>
+   
+       
+      
+    </section>
+    </section>
+    <section class="tab-panel" id="panel-search" hidden><h1>🔍 SEARCH</h1><form id="level-search-form"><input id="level-search-input" type="search" placeholder="Search for levels..." class="form-control" required><button type="submit">SEARCH</button></form><div id="level-results" aria-live="polite"></div></section>
+    <section class="tab-panel" id="panel-profiles" hidden><h2>PROFILES</h2><p>Explore te top BEST players in 2026!</p>
+    <form id="profile-search-form"><input id="profile-search-input" type="search" class="form-control" placeholder="Search GD profiles" required><button type="submit">SEARCH</button></form><div id="profile-results" aria-live="polite"></div></section>
+    <section class="tab-panel" id="panel-about" hidden><h1>ℹ️ ABOUT</h1><p>Learn more about GD Searcher.</p></section>
+    <section class="tab-panel" id="panel-configuration" hidden>
+      <h2>CONFIGURATION</h2><p>Web Settings</p>
+      <br>
+      <div class="contenedor3"><h1>Change language</h1><button type="button" data-language="es">Spanish</button><button type="button" data-language="en">English(Default)</button><br><br><div style="background-color: aqua; width: 100%; height: 100%; height:2px;"></div><div class="lineacontenedor3"><h1>Change theme</h1><button type="button" data-theme="dark">Dark(Default)</button><button type="button" data-theme="light">Light</button></div></div></section>
+      
+  </div>
 </body>
+<script>
+  //pestañas, esto lo podria hacer en un archivo .JS separado pero me da paja xd
+  //aparte es una web pequeña.
+
+document.querySelectorAll('.tab-button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        document.querySelectorAll('.tab-button').forEach(function (tab) {
+          var active = tab === button;
+          tab.setAttribute('aria-selected', String(active));
+          tab.style.background = active ? '#8f55ff' : '';
+          tab.style.color = active ? '#fff' : '';
+        });
+        document.querySelectorAll('.tab-panel').forEach(function (panel) {
+          panel.hidden = panel.id !== 'panel-' + button.dataset.tab;
+        });
+      });
+    });
+    // Search levels and players using GDBrowser's public API.
+    var apiBase = 'https://gdbrowser.com/api';
+    function searchMessage(output, text) {
+      output.replaceChildren();
+      var message = document.createElement('p');
+      message.textContent = text;
+      output.appendChild(message);
+    }
+    function renderSearchResult(output, title, details) {
+      var card = document.createElement('article');
+      card.style.cssText = 'margin-top:12px;padding:14px;background:rgba(143,85,255,.1);border:1px solid rgba(160,120,255,.25);border-radius:10px';
+      var heading = document.createElement('h3');
+      heading.textContent = title;
+      card.appendChild(heading);
+      details.forEach(function (detail) {
+        var line = document.createElement('p');
+        line.textContent = detail;
+        card.appendChild(line);
+      });
+      output.appendChild(card);
+    }
+    async function requestSearch(formId, inputId, outputId, type) {
+      var query = document.querySelector(inputId).value.trim();
+      var output = document.querySelector(outputId);
+      if (!query) return;
+      searchMessage(output, 'Searching...');
+      try {
+        var url = apiBase + '/search/' + encodeURIComponent(query) + (type === 'users' ? '?type=users' : '');
+        var response = await fetch(url);
+        if (!response.ok) throw new Error('API request failed');
+        var results = await response.json();
+        output.replaceChildren();
+        if (!Array.isArray(results) || results.length === 0) {
+          searchMessage(output, 'No results found.');
+          return;
+        }
+        results.forEach(function (item) {
+          if (type === 'users') {
+            renderSearchResult(output, item.username || item.name || 'Unknown player', [
+              'Player ID: ' + (item.accountID || item.playerID || 'N/A'),
+              'Stars: ' + (item.stars ?? 'N/A') + ' · Demons: ' + (item.demons ?? 'N/A'),
+              'Creator points: ' + (item.cp ?? 'N/A') + ' · Rank: ' + (item.rank ?? 'N/A')
+            ]);
+          } else {
+            renderSearchResult(output, item.name || 'Untitled level', [
+              'Creator: ' + (item.author || 'Unknown'),
+              'ID: ' + (item.id || 'N/A') + ' · Difficulty: ' + (item.difficulty || 'Unknown'),
+              'Downloads: ' + (item.downloads ?? 'N/A') + ' · Likes: ' + (item.likes ?? 'N/A')
+            ]);
+          }
+        });
+      } catch (error) {
+        searchMessage(output, 'Search failed. Check your connection and try again.');
+      }
+    }
+    document.querySelector('#level-search-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      requestSearch('level-search-form', '#level-search-input', '#level-results', 'levels');
+    });
+    document.querySelector('#profile-search-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      requestSearch('profile-search-form', '#profile-search-input', '#profile-results', 'users');
+    });
+    //cambiar lenguaje y tema xd entre otros
+    var original = {
+      home: document.querySelector('#panel-home .texto1').textContent,
+      welcome: document.querySelector('#panel-home p').textContent,
+      search: document.querySelector('#panel-search h1').textContent,
+      placeholder: document.querySelector('#panel-search input').placeholder,
+      profiles: document.querySelector('#panel-profiles h2').textContent,
+      profilesText: document.querySelector('#panel-profiles p').textContent,
+      profilesPlaceholder: document.querySelector('#panel-profiles input').placeholder,
+      about: document.querySelector('#panel-about h2').textContent,
+      aboutText: document.querySelector('#panel-about p').textContent,
+      configuration: document.querySelector('#panel-configuration h2').textContent,
+      settings: document.querySelector('#panel-configuration > p').textContent,
+      language: document.querySelector('.contenedor3 > h1').textContent,
+      theme: document.querySelector('.lineacontenedor3 h1').textContent,
+      
+    };
+    // E S P A Ñ O L
+    var spanish = {
+      home: 'INICIO', welcome: 'Puedes guardar y jugar tus niveles favoritos en cualquier momento; busca un nivel o perfil para encontrar algo específico.',
+      search: '🔍 BUSCAR', placeholder: 'Buscar niveles y más...',
+      profiles: '👤 PERFILES', profilesPlaceholder: 'Buscar perfiles...', profilesText: 'Explora los mejores jugadores del 2026!.',
+      about: 'ACERCA DE', aboutText: 'Conoce más sobre GD Searcher.', configuration: 'CONFIGURACIÓN', settings: 'Ajustes web', language: 'Cambiar idioma', theme: 'Cambiar tema'
+    };
+    var selectors = {
+      home: '#panel-home .texto1', welcome: '#panel-home p', search: '#panel-search h1', profiles: '#panel-profiles h2',
+      profilesText: '#panel-profiles p', about: '#panel-about h2', aboutText: '#panel-about p',
+      configuration: '#panel-configuration h2', settings: '#panel-configuration > p', language: '.contenedor3 > h1', theme: '.lineacontenedor3 h1'
+    };
+    document.querySelectorAll('[data-language]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var isSpanish = button.dataset.language === 'es';
+        Object.keys(selectors).forEach(function (key) {
+          var target = document.querySelector(selectors[key]);
+          if (target) {
+            target.textContent = isSpanish ? spanish[key] : original[key];
+          }
+        });
+        document.querySelector('#panel-search input').placeholder = isSpanish ? spanish.placeholder : original.placeholder;
+        document.querySelector('#panel-profiles input').placeholder = isSpanish ? spanish.profilesPlaceholder : original.profilesPlaceholder;
+        document.documentElement.lang = isSpanish ? 'es' : 'en';
+      });
+    });
+    document.querySelectorAll('[data-theme]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var light = button.dataset.theme === 'light';
+        var content = document.querySelector('.content');
+        var header = document.querySelector('.categorias');
+        content.style.background = light ? '#fff' : 'rgba(18, 20, 34, 0.8)';
+        content.style.color = light ? '#211b2b' : '#f5f2ff';
+        header.style.background = light ? 'linear-gradient(135deg, #fff, #eee8fa)' : 'linear-gradient(135deg, #1e1e1e, #29243a)';
+        header.querySelector('h1').style.color = light ? '#211b2b' : '#f5f2ff';
+        document.body.style.backgroundColor = light ? '#f4f1fa' : '';
+      });
+    });
+</script>
+<p>Made with ❤️ By Leon Edits</p>
 </html>

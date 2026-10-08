@@ -1,0 +1,73 @@
+body{
+  background-color: rgba(17, 17, 17, 0.856);
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+
+}
+button{
+  display: inline-block;
+  background: linear-gradient(145deg, #111a22, #05080b);
+  color: #8beaff;
+  border: 1px solid #20d5ff;
+  box-shadow: 0 0 8px rgba(32, 213, 255, 0.45), inset 0 0 8px rgba(32, 213, 255, 0.08);
+  padding: 10px 2px;
+  text-shadow: 0 0 8px rgba(32, 213, 255, 0.65);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 8px;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  
+  
+}
+button:hover{
+  background: linear-gradient(145deg, #142532, #071018);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(32, 213, 255, 0.75), inset 0 0 10px rgba(32, 213, 255, 0.12);
+}
+.categorias{
+  display:flex;
+  background-color:#1b1c1d;
+  align-items:center;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #0d0d0e;
+  border: aqua 1px solid;
+  color:white;
+  box-shadow: 0 0 1px rgba(32, 213, 255, 0.45), inset 0 0 8px rgba(32, 213, 255, 0.08);
+  padding: 15px 30px;
+  text-shadow: 0 0 8px rgba(32, 213, 255, 0.65);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+input[type="search"]:focus,
+input[type="search"]:focus-visible {
+  outline: none;
+}
+input[type="search"]:hover{
+  transform: translateY(-2px);
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgba(32, 213, 255, 0.45), inset 0 0 8px rgba(32, 213, 255, 0.08);
+}
+input[type="search"]:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 6px rgba(32, 213, 255, 0.3), inset 0 0 8px rgba(32, 213, 255, 0.06);
+}
+
+.contenedor3{
+  display:inline-block;
+  background-color: #0c0c0c;
+  width: 100%;
+  height: 500px;
+  border: aqua 2px solid;
+  border-radius:20px;
+
+}
