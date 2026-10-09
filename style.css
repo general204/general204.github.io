@@ -11,21 +11,20 @@ button{
   color: #8beaff;
   border: 1px solid #20d5ff;
   box-shadow: 0 0 8px rgba(32, 213, 255, 0.45), inset 0 0 8px rgba(32, 213, 255, 0.08);
-  padding: 10px 2px;
+  padding: 10px 10px;
   text-shadow: 0 0 8px rgba(32, 213, 255, 0.65);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  margin: 8px;
+  margin: 5px;
   border-radius: 10px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   
   
-}
+} /*UF TREMENDO ESTILO RIKO */
 button:hover{
   background: linear-gradient(145deg, #142532, #071018);
-  transform: translateY(-2px);
-  transform: rotate(-2deg);
+  transform: rotate(2deg);
   transition: 0.3s;
   box-shadow: 0 0 15px rgba(32, 213, 255, 0.75), inset 0 0 10px rgba(32, 213, 255, 0.12);
 }
@@ -73,21 +72,12 @@ input[type="search"]:active {
   border-radius:20px;
 
 }
-.cloud{
-  transition:0.3s;
-
-}
-.cloud:hover{
-  transform: rotate(3deg) translateY(-50px);
-  transition: 0.3s ease 0.1s;
-  cursor:pointer;
-}
-.cloud::after{
-  transition: 0.2s ease;
-
-
-}
-.cloud:active{
-  transform: rotate(-3deg) translateY(50px);
-  transition: 0.2s ease;
+.madeWith{
+  display:inline-block;
+  width:49%;
+  height:10%;
+  background-color:rgba(18, 20, 34, 0.8);
+  align-items: center;
+  border-radius: 15px;
+  border:1px solid rgb(0, 12, 105);
 }

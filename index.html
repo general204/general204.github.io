@@ -2,15 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <meta name="description" content="GD Browser, search your favorite levels and the best demons and players and Others!">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GD Searcher </title>
+  <title>GD Browser </title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 <body>
   <div class="categorias" style="box-sizing: border-box; width: min(700px, calc(100% - 32px)); min-height: 180px; padding: 28px 32px; margin: 40px auto 0; background: linear-gradient(135deg, #1e1e1e, #29243a); border: 1px solid rgba(160, 120, 255, .25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, .3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
-      <h1 style="left:100%;margin: 0; color: #f5f2ff; font-family: 'Russo One', sans-serif; font-size: clamp(24px, 5vw, 34px); letter-spacing: .06em; line-height: 1.15; text-shadow: 0 0 18px rgba(158, 104, 255, .35);">GD SEARCHER</h1><image style="width:30px;height:30px;" src="https://tse4.mm.bing.net/th/id/OIP.k0HdYV4_bmgFKnGtcHR46AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", draggable="false"></image>
+      <h1 style="left:100%;margin: 0; color: #f5f2ff; font-family: 'Russo One', sans-serif; font-size: clamp(24px, 5vw, 34px); letter-spacing: .06em; line-height: 1.15; text-shadow: 0 0 18px rgba(158, 104, 255, .35);">GD BROWSER</h1><image style="width:30px;height:30px;" src="https://tse4.mm.bing.net/th/id/OIP.k0HdYV4_bmgFKnGtcHR46AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", draggable="false"></image>
     <nav aria-label="Navegación principal" style="display: flex; flex-wrap: wrap; gap: 10px;">
       <button type="button" class="tab-button" id="tab-home" aria-selected="true" data-tab="home">🏠 HOME</button><button type="button" class="tab-button" id="tab-search" aria-selected="false" data-tab="search">🔍 SEARCH</button><button type="button" class="tab-button" id="tab-top-players" aria-selected="false" data-tab="top-players">🏆 BEST PLAYERS</button><button type="tab-button" class="tab-button" id="tab-about" aria-selected="false" data-tab="about">ℹ️ ABOUT</button><button class="tab-button", id="tab-demons", aria-selected="false" data-tab="demons">😈 EXTREME DEMONS</button>
     </nav>
@@ -45,7 +46,7 @@
     <section class="tab-panel" id="panel-search" hidden><h1>🔍 SEARCH</h1><form id="level-search-form"><input id="level-search-input" type="search" placeholder="Search for levels..." class="form-control" required><button type="submit">SEARCH</button></form><div id="level-results" aria-live="polite"></div></section>
     <section class="tab-panel" id="panel-profiles" hidden><h2>PROFILES</h2><p>Explore te top BEST players in 2026!</p>
     <form id="profile-search-form"><input id="profile-search-input" type="search" class="form-control" placeholder="Search GD profiles" required><button type="submit">SEARCH</button></form><div id="profile-results" aria-live="polite"></div></section>
-    <section class="tab-panel" id="panel-about" hidden><h1>ℹ️ ABOUT</h1><p>This is a simple project, which  
+    <section class="tab-panel" id="panel-about" hidden><h1>ℹ️ ABOUT</h1><br><br><p>This is a simple project, which  
 simply try to look for levels, and view the level id's, profiles among others in the future, this project , Thanks.</section>
     <section class="tab-panel" id="panel-top-players" hidden>
       <h1>🏆 TOP BEST PLAYERS IN 2026</h1>
@@ -91,7 +92,7 @@ simply try to look for levels, and view the level id's, profiles among others in
     message.textContent = text;
     output.appendChild(message);
   }
-
+//Resultado
   function renderResult(output, title, details) {
     const card = document.createElement('article');
     card.style.cssText = 'margin-top:12px;padding:14px;background:rgba(143,85,255,.1);border:1px solid rgba(160,120,255,.25);border-radius:10px';
@@ -105,7 +106,7 @@ simply try to look for levels, and view the level id's, profiles among others in
     });
     output.appendChild(card);
   }
-
+//buscar niveles
   async function search(query, output, type) {
     if (!query) return;
     showMessage(output, 'Searching...');
@@ -138,7 +139,7 @@ simply try to look for levels, and view the level id's, profiles among others in
       showMessage(output, 'Search failed. Check your connection and try again.');
     }
   }
-
+//
   document.querySelector('#level-search-form').addEventListener('submit', (event) => {
     event.preventDefault();
     search(document.querySelector('#level-search-input').value.trim(), document.querySelector('#level-results'), 'levels');
@@ -147,7 +148,7 @@ simply try to look for levels, and view the level id's, profiles among others in
     event.preventDefault();
     search(document.querySelector('#profile-search-input').value.trim(), document.querySelector('#profile-results'), 'users');
   });
-
+//estos son los putos goats
   const topPlayers = [
     { rank: 1, name: 'Zoink', badge: '👑', score: 'NIVEL MAXIMO' },
     { rank: 2, name: 'wPopoff', badge: '⚡', score: 'Gran velocidad' },
@@ -162,7 +163,7 @@ simply try to look for levels, and view the level id's, profiles among others in
     { rank: 4, name: 'Tidal Wave', badge: '💠', score: 'THE PRECISION CHALLENGE'},
     { rank: 5, name: 'Flamewall', badge: '🚀', score: 'THE ULTIMATE TEST'}
   ]
-
+//top players
   function renderTopPlayers() {
     const container = document.querySelector('#top-players-list');
     if (!container) return;
@@ -179,7 +180,9 @@ simply try to look for levels, and view the level id's, profiles among others in
       `;
       container.appendChild(item);
     });
+    //por cierto binox me la re chupa
   }
+  //demons
   function renderDemons() {
     const container = document.querySelector('#top-demons-list');
     if (!container) return;
@@ -197,43 +200,12 @@ simply try to look for levels, and view the level id's, profiles among others in
       container.appendChild(item);
     });
   }
-
+//mostrar
   renderTopPlayers();
   renderDemons();
 
-  // Idiomas.
-  const translations = {
-    home: { selector: '#panel-home .texto1', en: '🏠 HOME', es: 'INICIO' },
-    welcome: { selector: '#panel-home p', en: 'You can save and play your favorite levels anytime, just search a level or a profile if you want to find something specific.', es: 'Puedes guardar y jugar tus niveles favoritos en cualquier momento; busca un nivel o perfil para encontrar algo específico.' },
-    search: { selector: '#panel-search h1', en: '🔍 SEARCH', es: '🔍 BUSCAR' },
-    profiles: { selector: '#panel-profiles h2', en: 'PROFILES', es: '👤 PERFILES' },
-    profilesText: { selector: '#panel-profiles p', en: 'Explore te top BEST players in 2026!', es: '¡Explora los mejores jugadores de 2026!' },
-    about: { selector: '#panel-about h1', en: 'ℹ️ ABOUT', es: 'ACERCA DE' },
-    aboutText: { selector: '#panel-about p', en: 'Learn more about GD Searcher.', es: 'Conoce más sobre GD Searcher.' },
-    configuration: { selector: '#panel-configuration h2', en: 'CONFIGURATION', es: 'CONFIGURACIÓN' },
-    settings: { selector: '#panel-configuration > p', en: 'Web Settings', es: 'Ajustes web' },
-    language: { selector: '.contenedor3 > h1', en: 'Change language', es: 'Cambiar idioma' },
-    theme: { selector: '.lineacontenedor3 h1', en: 'Change theme', es: 'Cambiar tema' }
-  };
-  const placeholders = {
-    search: { en: 'Search for levels...', es: 'Buscar niveles y más...' },
-    profiles: { en: 'Search GD profiles', es: 'Buscar perfiles...' }
-  };
 
-  document.querySelectorAll('[data-language]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const language = button.dataset.language;
-      Object.values(translations).forEach(({ selector, en, es }) => {
-        const el = document.querySelector(selector);
-        if (el) el.textContent = language === 'es' ? es : en;
-      });
-      document.querySelector('#level-search-input').placeholder = placeholders.search[language];
-      document.querySelector('#profile-search-input').placeholder = placeholders.profiles[language];
-      document.documentElement.lang = language;
-    });
-  });
-
-  // Tema visual.
+  // interfaz xd
   document.querySelectorAll('[data-theme]').forEach((button) => {
     button.addEventListener('click', () => {
       const light = button.dataset.theme === 'light';
@@ -248,23 +220,10 @@ simply try to look for levels, and view the level id's, profiles among others in
   });
 
   // Selección y aviso de archivo .gmd. La validación remota no está disponible.
-  const fileInput = document.querySelector('#gmd-file-input');
-  const fileList = document.querySelector('#gmd-file-list');
-  document.querySelector('#gmd').addEventListener('click', () => fileInput.click());
-  document.querySelector('.cloud').addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0];
-    if (!file) return;
-    const fileName = document.createElement('p');
-    fileName.textContent = file.name;
-    fileList.replaceChildren(fileName);
-  });
-  document.querySelector('#gmd-verify-button').addEventListener('click', () => {
-    const status = document.querySelector('#gmd-verify-status');
-    status.textContent = fileInput.files.length
-      ? 'No se pueden verificar archivos .gmd desde esta página.'
-      : 'Selecciona un archivo .gmd primero.';
-  });
+  //============================================================================//
+  //CANCELADO POR AHORA XD                                                     //
+  //==========================================================================//
 </script>
-<p>Made with ❤️ By Leon Edits</p>
+<div class="madeWith">
+<p>Made with ❤️ By Leon Edits</p></div>
 </html>
