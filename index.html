@@ -12,7 +12,7 @@
   <div class="categorias" style="box-sizing: border-box; width: min(700px, calc(100% - 32px)); min-height: 180px; padding: 28px 32px; margin: 40px auto 0; background: linear-gradient(135deg, #1e1e1e, #29243a); border: 1px solid rgba(160, 120, 255, .25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, .3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
       <h1 style="left:100%;margin: 0; color: #f5f2ff; font-family: 'Russo One', sans-serif; font-size: clamp(24px, 5vw, 34px); letter-spacing: .06em; line-height: 1.15; text-shadow: 0 0 18px rgba(158, 104, 255, .35);">GD SEARCHER</h1><image style="width:30px;height:30px;" src="https://tse4.mm.bing.net/th/id/OIP.k0HdYV4_bmgFKnGtcHR46AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", draggable="false"></image>
     <nav aria-label="Navegación principal" style="display: flex; flex-wrap: wrap; gap: 10px;">
-      <button type="button" class="tab-button" id="tab-home" aria-selected="true" data-tab="home">🏠 HOME</button><button type="button" class="tab-button" id="tab-search" aria-selected="false" data-tab="search">🔍 SEARCH</button><button type="button" class="tab-button" id="tab-profiles" aria-selected="false" data-tab="profiles">👤 PROFILES</button><button type="button" class="tab-button" id="tab-top-players" aria-selected="false" data-tab="top-players">🏆 BEST PLAYERS</button><button type="tab-button" class="tab-button" id="tab-about" aria-selected="false" data-tab="about">ℹ️ ABOUT</button><button class="tab-button", id="tab-bypass", aria-selected="false" data-tab="bypass">🔒 Bypass</button>
+      <button type="button" class="tab-button" id="tab-home" aria-selected="true" data-tab="home">🏠 HOME</button><button type="button" class="tab-button" id="tab-search" aria-selected="false" data-tab="search">🔍 SEARCH</button><button type="button" class="tab-button" id="tab-top-players" aria-selected="false" data-tab="top-players">🏆 BEST PLAYERS</button><button type="tab-button" class="tab-button" id="tab-about" aria-selected="false" data-tab="about">ℹ️ ABOUT</button><button class="tab-button", id="tab-demons", aria-selected="false" data-tab="demons">😈 EXTREME DEMONS</button>
     </nav>
   <!--|| CREAR FUNCION DE ORGANIZAR PESTAÑAS||-->
   </div>
@@ -46,16 +46,18 @@
     <section class="tab-panel" id="panel-profiles" hidden><h2>PROFILES</h2><p>Explore te top BEST players in 2026!</p>
     <form id="profile-search-form"><input id="profile-search-input" type="search" class="form-control" placeholder="Search GD profiles" required><button type="submit">SEARCH</button></form><div id="profile-results" aria-live="polite"></div></section>
     <section class="tab-panel" id="panel-about" hidden><h1>ℹ️ ABOUT</h1><p>This is a simple project, which  
-simply try to look for levels, profiles among others in the future, this project also has a mode (IN DEVELOPMENT) that deals with Bypass, which is basically "skipping" the verification step, of geometry dash itself, but BE CAREFUL, I do not recommend it, since that greatly increases the chances of your geometry dash account being banned, therefore it is not within my responsibility.</p></section>
+simply try to look for levels, and view the level id's, profiles among others in the future, this project , Thanks.</section>
     <section class="tab-panel" id="panel-top-players" hidden>
-      <h1>🏆 MEJORES JUGADORES</h1>
-      <p>THE TOP BEST PLAYERS IN 2026 </p>
+      <h1>🏆 TOP BEST PLAYERS IN 2026</h1>
+      <p>THE GOAT'S OF GEOMETRY DASH </p>
       <div id="top-players-list" aria-live="polite"></div>
     </section>
     <section class="tab-panel" id="panel-configuration" hidden><h2>CONFIGURATION</h2><p>Web Settings</p>   <br>
       <div class="contenedor3"><h1>Change language</h1><button type="button" data-language="es">Spanish</button><button type="button" data-language="en">English(Default)</button><br><br><div style="background-color: aqua; width: 100%; height: 100%; height:2px;"></div><div class="lineacontenedor3"><h1>Change theme</h1><button type="button" data-theme="dark">Dark(Default)</button><button type="button" data-theme="light">Light</button></div></div>
     </section>
-    <section class="tab-panel" id="panel-bypass" hidden><br><h1>🔒 Bypass</h1><h2>IN PROGRESS OF CREATION.....</h2></section>
+    <section class="tab-panel" id="panel-demons" hidden><br>      <h1>😈 THE TOP HARDEST EXTREME DEMON'S</h1>
+      <p>THE GOAT'S OF GEOMETRY DASH </p>
+      <div id="top-demons-list" aria-live="polite"></div></div></section>
       
   
       
@@ -153,6 +155,13 @@ simply try to look for levels, profiles among others in the future, this project
     { rank: 4, name: 'Nexus', badge: '💠', score: 'Precisión' },
     { rank: 5, name: 'Doggie', badge: '🚀', score: 'Dominio total' }
   ];
+  const topDemons = [
+    { rank: 1, name: 'GRIEF 🔥', badge: '👑', score: 'THE KING OF HARDEST'},
+    { rank: 2, name: 'Society', badge: '⚡', score: 'THE LEGENDARY DEMON'},
+    { rank: 3, name: 'Thinking Space 2', badge: '🔥', score: 'THE SPEED MASTER'},
+    { rank: 4, name: 'Tidal Wave', badge: '💠', score: 'THE PRECISION CHALLENGE'},
+    { rank: 5, name: 'Flamewall', badge: '🚀', score: 'THE ULTIMATE TEST'}
+  ]
 
   function renderTopPlayers() {
     const container = document.querySelector('#top-players-list');
@@ -171,8 +180,26 @@ simply try to look for levels, profiles among others in the future, this project
       container.appendChild(item);
     });
   }
+  function renderDemons() {
+    const container = document.querySelector('#top-demons-list');
+    if (!container) return;
+    container.replaceChildren();
+    topDemons.forEach((demon) => {
+      const item = document.createElement('article');
+      item.style.cssText = 'margin-top:12px;padding:14px;background:rgba(143,85,255,.08);border:1px solid rgba(160,120,255,.25);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;';
+      item.innerHTML = `
+        <div>
+          <h3 style="margin:0 0 4px;">${demon.badge} #${demon.rank} ${demon.name}</h3>
+          <p style="margin:0;color:#dcd4ff;">${demon.score}</p>
+        </div>
+        <span style="font-weight:700;color:#9bffcf;">TOP ${demon.rank}</span>
+      `;
+      container.appendChild(item);
+    });
+  }
 
   renderTopPlayers();
+  renderDemons();
 
   // Idiomas.
   const translations = {
