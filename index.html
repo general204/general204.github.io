@@ -8,15 +8,19 @@
 <head>
   <meta charset="utf-8">
   <!--Descripcion mal hecha xd-->
-  <meta name="description" content="GD Browser, search your favorite levels and the best demons and players and Others!">
+  <meta name="description" content="GD FinderDash, search your favorite levels and the best demons and players and Others!">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>GD Browser </title> <!--OK DEBO TRATAR DE NO CAMBIAR DE NOMBRE CADA 1 MINUTO-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body{
-  background-color: rgba(17, 17, 17, 0.856);
+<style>
+body{
+  background: url('https://wallpapercave.com/wp/wp1856781.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
   color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
@@ -110,8 +114,8 @@ input[type="search"]:active {
 <body>
   
   <div class="categorias" style="box-sizing: border-box; width: min(700px, calc(100% - 32px)); min-height: 180px; padding: 28px 32px; margin: 40px auto 0; background: linear-gradient(135deg, #1e1e1e, #29243a); border: 1px solid rgba(160, 120, 255, .25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, .3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
-    <a href="https://www.tiktok.com/@leonedits016?_r=1&_t=ZS-9AP5eO31kJE"><image class="tiktokLogo" src="https://static.freepnglogo.com/images/all_img/tik-tok-logo-png-80f7.png" width="20" height="25" style="display:flex;"></image></a>
-    <h1 style="left:100%;margin: 0; color: #f5f2ff; font-family: 'Russo One', sans-serif; font-size: clamp(24px, 5vw, 34px); letter-spacing: .06em; line-height: 1.15; text-shadow: 0 0 18px rgba(158, 104, 255, .35);">GD BROWSER</h1><image style="width:30px;height:30px;" src="https://tse4.mm.bing.net/th/id/OIP.k0HdYV4_bmgFKnGtcHR46AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", draggable="false"></image>
+    <a href="https://www.tiktok.com/@leonedits016?_r=1&_t=ZS-9AP5eO31kJE"><image class="tiktokLogo" src="https://static.freepnglogo.com/images/all_img/tik-tok-logo-png-80f7.png" draggable="false" width="20" height="25" style="display:flex;"></image></a>
+    <h1 style="left:100%;margin: 0; color: #f5f2ff; font-family: 'Russo One', sans-serif; font-size: clamp(24px, 5vw, 34px); letter-spacing: .06em; line-height: 1.15; text-shadow: 0 0 18px rgba(158, 104, 255, .35);">GD FinderDash</h1><image style="width:30px;height:30px;" src="https://tse4.mm.bing.net/th/id/OIP.k0HdYV4_bmgFKnGtcHR46AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", draggable="false"></image>
       
     <nav aria-label="Navegación principal" style="display: flex; flex-wrap: wrap; gap: 10px;">
       <button type="button" class="tab-button" id="tab-home" aria-selected="true" data-tab="home">🏠 HOME</button><button type="button" class="tab-button" id="tab-search" aria-selected="false" data-tab="search">🔍 SEARCH</button><button type="button" class="tab-button" id="tab-top-players" aria-selected="false" data-tab="top-players">🏆 BEST PLAYERS</button><button class="tab-button", id="tab-demons", aria-selected="false" data-tab="demons">😈 EXTREME DEMONS</button><button class="tab-button" id="tab-saved" data-tab="saved">💾 Saved Levels</button><button type="tab-button" class="tab-button" id="tab-about" aria-selected="false" data-tab="about">ℹ️ ABOUT</button>
@@ -133,7 +137,7 @@ input[type="search"]:active {
       <h2 id="guide-title">How this website works</h2>
       <p>GD Searcher is a small interface for finding Geometry Dash levels and player profiles. Use the navigation buttons at the top to switch between pages; only the selected panel is shown.</p>
       <ul>
-        <li><strong>Home:</strong> Introduction and the featured image.</li>
+        <li><strong>Home:</strong> Introduction</li>
         <li><strong>Search:</strong> Enter a level or other search term and press SEARCH. The current page provides the input interface; it does not yet connect to a search service.</li>
         <li><strong>Profiles:</strong> A profile search field for finding players. It is currently a visual input and is not connected to player data.</li>
         <li><strong>About:</strong> Brief information about GD Searcher.</li>
@@ -357,6 +361,7 @@ simply try to look for levels, and view the level id's, profiles among others in
             const saved = addSavedLevel(item.id);
             saveButton.textContent = saved ? 'Saved' : 'Ya guardado / Already saved';
             saveButton.disabled = true;
+            alert("¡Level Saved! || ¡Nivel Guardado!");
           });
           output.lastElementChild.appendChild(saveButton);
         }
