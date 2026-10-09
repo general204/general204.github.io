@@ -81,3 +81,11 @@ input[type="search"]:active {
   border-radius: 15px;
   border:1px solid rgb(0, 12, 105);
 }
+/*MI CUENTA DE TIKTOK / LEON EDITS */
+.tiktokLogo{
+  transition: 0.3s ease;
+}
+.tiktokLogo:hover{
+  transition: 0.3s ease;
+  transform: translateY(-3px);
+}
