@@ -4,13 +4,13 @@
     G E O M E T R Y   D A S H   S E A R C H E R -->
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <!--Descripcion mal hecha xd-->
   <meta name="description" content="GD FinderDash, search your favorite levels and the best demons and players and Others!">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GD Browser </title> <!--OK DEBO TRATAR DE NO CAMBIAR DE NOMBRE CADA 1 MINUTO-->
+  <title>GD FinderDash </title> <!--OK DEBO TRATAR DE NO CAMBIAR DE NOMBRE CADA 1 MINUTO-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -45,8 +45,8 @@ button{
 } /*UF TREMENDO ESTILO RIKO */
 button:hover{
   background: linear-gradient(145deg, #142532, #071018);
-  transform: rotate(2deg);
-  transition: 0.3s;
+  transform: rotate(3deg);
+  transition: 0.4s;
   box-shadow: 0 0 15px rgba(32, 213, 255, 0.75), inset 0 0 10px rgba(32, 213, 255, 0.12);
 }
 .categorias{
@@ -152,8 +152,7 @@ input[type="search"]:active {
     <section class="tab-panel" id="panel-search" hidden>
       <h1>🔍 SEARCH</h1><form id="level-search-form">
       <input id="level-search-input" type="search" placeholder="Search for levels..." class="form-control" required><button type="submit">SEARCH</button></form><div id="level-results" aria-live="polite"></div></section>
-    <section class="tab-panel" id="panel-profiles" hidden><h2>PROFILES</h2><p>Explore te top BEST players in 2026!</p>
-    <form id="profile-search-form"><input id="profile-search-input" type="search" class="form-control" placeholder="Search GD profiles" required><button type="submit">SEARCH</button></form><div id="profile-results" aria-live="polite"></div></section>
+    
     <section class="tab-panel" id="panel-about" hidden><h1>ℹ️ ABOUT</h1><br><br><p>This is a simple project, which  
 simply try to look for levels, and view the level id's, profiles among others in the future, this project , Thanks.</section>
     <section class="tab-panel" id="panel-top-players" hidden>
@@ -162,10 +161,7 @@ simply try to look for levels, and view the level id's, profiles among others in
       <p>THE GOAT'S OF GEOMETRY DASH </p>
       <div id="top-players-list" aria-live="polite"></div>
     </section>
-    <section class="tab-panel" id="panel-configuration" hidden>
-      <h2>CONFIGURATION</h2><p>Web Settings</p>   <br>
-      <div class="contenedor3"><h1>Change language</h1><button type="button" data-language="es">Spanish</button><button type="button" data-language="en">English(Default)</button><br><br><div style="background-color: aqua; width: 100%; height: 100%; height:2px;"></div><div class="lineacontenedor3"><h1>Change theme</h1><button type="button" data-theme="dark">Dark(Default)</button><button type="button" data-theme="light">Light</button></div></div>
-    </section>
+    
     <!--GUardado de niveles-->
         <section class="tab-panel" id="panel-saved" hidden>
           <h1>💾 Saved Level's</h1>
