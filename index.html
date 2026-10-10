@@ -1,458 +1,643 @@
 <!--|===================|
     |INICO DEL PROYECTO |
     |===================|
-    G E O M E T R Y   D A S H   S E A R C H E R -->
+    G E O M E T R Y   D A S H   S E A R C H E R 
+
+    proyecto de temu xd-->
 
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <!--Descripcion mal hecha xd-->
-  <meta name="description" content="GD FinderDash, search your favorite levels and the best demons and players and Others!">
+
+  <meta name="description" content="GD FinderDash — search Geometry Dash levels and top players.">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GD FinderDash </title> <!--OK DEBO TRATAR DE NO CAMBIAR DE NOMBRE CADA 1 MINUTO-->
+  <title>GD FinderDash</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-body{
-  background: url('https://wallpapercave.com/wp/wp1856781.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  color: white;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  text-align: center;
+  <style>
+    /* lo haria mejor pero se bugea esta madre coon cada linea*/
+    :root {
+      --bg: #0f1117;
+      --card: rgba(18, 20, 34, 0.82);
+      --card-alt: rgba(143, 85, 255, 0.08);
+      --line: rgba(160, 120, 255, 0.25);
+      --text: #f5f2ff;
+      --muted: #dcd4ff;
+      --accent: #8f55ff;
+      --accent-strong: #7c3aed;
+      --success: #9bffcf;
+    }
 
-}
-button{
-  display: inline-block;
-  background: linear-gradient(145deg, #111a22, #05080b);
-  color: #8beaff;
-  border: 1px solid #20d5ff;
-  box-shadow: 0 0 8px rgba(32, 213, 255, 0.45), inset 0 0 8px rgba(32, 213, 255, 0.08);
-  padding: 10px 10px;
-  text-shadow: 0 0 8px rgba(32, 213, 255, 0.65);
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin: 5px;
-  border-radius: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  
-  
-} /*UF TREMENDO ESTILO RIKO */
-button:hover{
-  background: linear-gradient(145deg, #142532, #071018);
-  transform: rotate(3deg);
-  transition: 0.4s;
-  box-shadow: 0 0 15px rgba(32, 213, 255, 0.75), inset 0 0 10px rgba(32, 213, 255, 0.12);
-}
-.categorias{
-  display:flex;
-  background-color:#1b1c1d;
-  align-items:center;
-}
+    * { box-sizing: border-box; }
 
-input[type="search"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-sizing: border-box;
-  background-color: #0d0d0e;
-  border: aqua 1px solid;
-  color:white;
-  box-shadow: 0 0 1px rgba(32, 213, 255, 0.45), inset 0 0 8px rgba(32, 213, 255, 0.08);
-  padding: 15px 30px;
-  text-shadow: 0 0 8px rgba(32, 213, 255, 0.65);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-input[type="search"]:focus,
-input[type="search"]:focus-visible {
-  outline: none;
-}
-input[type="search"]:hover{
-  transform: translateY(-2px);
-  transition: 0.3s;
-  box-shadow: 0 0 20px rgba(32, 213, 255, 0.45), inset 0 0 8px rgba(32, 213, 255, 0.08);
-}
-input[type="search"]:active {
-  transform: translateY(2px);
-  box-shadow: 0 0 6px rgba(32, 213, 255, 0.3), inset 0 0 8px rgba(32, 213, 255, 0.06);
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: url('https://wallpapercave.com/wp/wp1856781.jpg') center/cover no-repeat fixed;
+      color: var(--text);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      text-align: center;
+    }
 
-.contenedor3{
-  display:inline-block;
-  background-color: #0c0c0c;
-  width: 100%;
-  height: 500px;
-  border: aqua 2px solid;
-  border-radius:20px;
+    button, input {
+      font: inherit;
+    }
 
-}
-.madeWith{
-  display:inline-block;
-  width:49%;
-  height:10%;
-  background-color:rgba(18, 20, 34, 0.8);
-  align-items: center;
-  border-radius: 15px;
-  border:1px solid rgb(0, 12, 105);
-}
-/*MI CUENTA DE TIKTOK / LEON EDITS */
-.tiktokLogo{
-  transition: 0.3s ease;
-}
-.tiktokLogo:hover{
-  transition: 0.3s ease;
-  transform: translateY(-3px);
-}
+    button {
+      background: linear-gradient(145deg, #111a22, #05080b);
+      color: #8beaff;
+      border: 1px solid #20d5ff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 0 8px rgba(32, 213, 255, 0.4);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 14px rgba(32, 213, 255, 0.7);
+    }
+
+    a { color: inherit; }
+
+    .header {
+      width: min(760px, calc(100% - 32px));
+      margin: 40px auto 0;
+      padding: 28px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(135deg, #1e1e1e, #29243a);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Russo One', sans-serif;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 18px rgba(158, 104, 255, 0.35);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(24px, 5vw, 34px);
+      color: var(--text);
+    }
+
+    .brand img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .tab-button[aria-selected="true"] {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .content {
+      width: min(760px, calc(100% - 32px));
+      margin: 40px auto;
+      padding: 32px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-panel[hidden] { display: none; }
+
+    .tab-panel h1 { margin-top: 0; }
+
+    .tab-panel p, .tab-panel li {
+      line-height: 1.6;
+    }
+
+    .search-form,
+    .save-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+
+    .search-form input,
+    .save-form input {
+      flex: 1 1 220px;
+      min-width: 0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #4ee0ff;
+      background: rgba(6, 12, 18, 0.8);
+      color: var(--text);
+    }
+
+    .search-form input:focus,
+    .save-form input:focus {
+      outline: 2px solid rgba(32, 213, 255, 0.35);
+      outline-offset: 1px;
+    }
+
+    .result-card,
+    .list-item {
+      margin-top: 12px;
+      padding: 14px;
+      background: var(--card-alt);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .result-card h3,
+    .list-item h3 {
+      margin: 0 0 6px;
+    }
+
+    .result-card p,
+    .list-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .result-card .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .status {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .saved-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .saved-item .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .saved-item a {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+    }
+
+    .empty {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .online-badge {
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      background: rgba(18, 27, 25, 0.94);
+      border: 1px solid rgba(92, 255, 174, 0.3);
+      border-radius: 999px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .online-badge i {
+      width: 9px;
+      height: 9px;
+      display: inline-block;
+      border-radius: 50%;
+      background: #48f59a;
+      box-shadow: 0 0 10px #48f59a;
+    }
+
+    .madeWith {
+      width: min(760px, calc(100% - 32px));
+      margin: 0 auto 30px;
+      padding: 12px 16px;
+      background: rgba(18, 20, 34, 0.8);
+      border: 1px solid rgba(160, 120, 255, 0.25);
+      border-radius: 12px;
+      color: var(--text);
+      text-align: center;
+    }
   </style>
+</head>
 <body>
-  
-  <div class="categorias" style="box-sizing: border-box; width: min(700px, calc(100% - 32px)); min-height: 180px; padding: 28px 32px; margin: 40px auto 0; background: linear-gradient(135deg, #1e1e1e, #29243a); border: 1px solid rgba(160, 120, 255, .25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, .3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
-    <a href="https://www.tiktok.com/@leonedits016?_r=1&_t=ZS-9AP5eO31kJE"><image class="tiktokLogo" src="https://static.freepnglogo.com/images/all_img/tik-tok-logo-png-80f7.png" draggable="false" width="20" height="25" style="display:flex;"></image></a>
-    <h1 style="left:100%;margin: 0; color: #f5f2ff; font-family: 'Russo One', sans-serif; font-size: clamp(24px, 5vw, 34px); letter-spacing: .06em; line-height: 1.15; text-shadow: 0 0 18px rgba(158, 104, 255, .35);">GD FinderDash</h1><image style="width:30px;height:30px;" src="https://tse4.mm.bing.net/th/id/OIP.k0HdYV4_bmgFKnGtcHR46AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", draggable="false"></image>
-      
-    <nav aria-label="Navegación principal" style="display: flex; flex-wrap: wrap; gap: 10px;">
-      <button type="button" class="tab-button" id="tab-home" aria-selected="true" data-tab="home">🏠 HOME</button><button type="button" class="tab-button" id="tab-search" aria-selected="false" data-tab="search">🔍 SEARCH</button><button type="button" class="tab-button" id="tab-top-players" aria-selected="false" data-tab="top-players">🏆 BEST PLAYERS</button><button class="tab-button", id="tab-demons", aria-selected="false" data-tab="demons">😈 EXTREME DEMONS</button><button class="tab-button" id="tab-saved" data-tab="saved">💾 Saved Levels</button><button type="tab-button" class="tab-button" id="tab-about" aria-selected="false" data-tab="about">ℹ️ ABOUT</button>
+  <header class="header">
+    <div class="brand" aria-label="GD FinderDash header">
+      <a href="https://www.tiktok.com/@leonedits016?_r=1&_t=ZS-9AP5eO31kJE" target="_blank" rel="noopener" aria-label="Leon Edits TikTok">
+        <img src="https://static.freepnglogo.com/images/all_img/tik-tok-logo-png-80f7.png" alt="TikTok logo" draggable="false">
+      </a>
+      <br><br><h1>GD FinderDash</h1>
+    </div>
+
+    <nav class="nav" aria-label="Main navigation">
+      <button type="button" class="tab-button" data-tab="home" aria-selected="true">🏠 HOME</button>
+      <button type="button" class="tab-button" data-tab="search" aria-selected="false">🔍 SEARCH</button>
+      <button type="button" class="tab-button" data-tab="top-players" aria-selected="false">🏆 BEST PLAYERS</button>
+      <button type="button" class="tab-button" data-tab="demons" aria-selected="false">😈 DEMONS</button>
+      <button type="button" class="tab-button" data-tab="saved" aria-selected="false">💾 SAVED</button>
+      <button type="button" class="tab-button" data-tab="about" aria-selected="false">ℹ️ ABOUT</button>
     </nav>
-  <!--|| PESTAÑAS Y OTRAS||-->
-  </div>
-  <div role="status" aria-label="Engine status: online" style="position: fixed; right: 2px; bottom: 5px; z-index: 10; display: inline-flex; align-items: center; gap: 10px; padding: 11px 16px; color: #e8fff4; background: rgba(18, 27, 25, .94); border: 1px solid rgba(92, 255, 174, .3); border-radius: 999px; box-shadow: 0 8px 28px rgba(0, 0, 0, .35), 0 0 18px rgba(49, 255, 153, .12); font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .04em;">
-    <span aria-hidden="true" style="width: 9px; height: 9px; flex: 0 0 10px; background: #48f59a; border-radius: 50%; box-shadow: 0 0 10px #48f59a;"></span>
+  </header>
+
+  <div class="online-badge" role="status" aria-live="polite">
+    <i aria-hidden="true"></i>
     <span>ENGINE ONLINE</span>
   </div>
 
-  <!--||EXPLICANDO COMO FUNCIONA MI WEB CULERA XD-->
-  <div class="content" style="overflow:hidden;box-sizing: border-box; width: min(650px, calc(100% - 32px)); min-height: 400px; margin: 40px auto; padding: 32px; color: #f5f2ff; font-family: 'Space Grotesk', sans-serif; background: rgba(18, 20, 34, 0.8); border: 1px solid rgba(160, 120, 255, 0.25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);">
-    <section class="tab-panel" id="panel-home"><h1 class="texto1">🏠 HOME</h1>
-    <p>You can save and play your favorite levels anytime,
-      just search a level or a profile if you want to find something specific.</p>
-    <image src="https://tse4.mm.bing.net/th/id/OIP.NMqh5-JMSNJIn4p5VqTFWAAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", style="max-width: 100%;display:block;" draggable="false"></image>
-    <section aria-labelledby="guide-title" style="margin-top: 28px; padding: 20px; background: rgba(143, 85, 255, .08); border: 1px solid rgba(160, 120, 255, .2); border-radius: 12px; line-height: 1.6;">
-      <h2 id="guide-title">How this website works</h2>
-      <p>GD Searcher is a small interface for finding Geometry Dash levels and player profiles. Use the navigation buttons at the top to switch between pages; only the selected panel is shown.</p>
-      <ul>
-        <li><strong>Home:</strong> Introduction</li>
-        <li><strong>Search:</strong> Enter a level or other search term and press SEARCH. The current page provides the input interface; it does not yet connect to a search service.</li>
-        <li><strong>Profiles:</strong> A profile search field for finding players. It is currently a visual input and is not connected to player data.</li>
-        <li><strong>About:</strong> Brief information about GD Searcher.</li>
-        <li><strong>Configuration:</strong> Choose Spanish or English and switch between dark and light appearance.</li>
-      </ul>
-   
-    <!--FIN DEL /HOME-->
-      
+  <main class="content">
+    <section class="tab-panel" id="panel-home">
+      <h1>🏠 HOME</h1>
+      <p>Search Geometry Dash levels, save your favorites, and check the live top players leaderboard.</p>
+      <img src="https://tse4.mm.bing.net/th/id/OIP.NMqh5-JMSNJIn4p5VqTFWAAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Geometry Dash illustration" style="max-width:100%;display:block;border-radius:12px;" draggable="false">
+      <section style="margin-top: 28px; padding: 20px; background: rgba(143, 85, 255, 0.08); border: 1px solid rgba(160, 120, 255, 0.2); border-radius: 12px;">
+        <h2>How it works</h2>
+        <ul>
+          <li><strong>Search:</strong> Find levels by name or keyword.</li>
+          <li><strong>Saved:</strong> Store level IDs locally in your browser.</li>
+          <li><strong>Top players:</strong> Shows the live leaderboard from GDBrowser.</li>
+          <li><strong>Demons:</strong> List of popular extreme demon names.</li>
+        </ul>
+      </section>
     </section>
-    </section>
-    <!--OK no se lo que estoy haciendo :]-->
+    <!--Sections-->
     <section class="tab-panel" id="panel-search" hidden>
-      <h1>🔍 SEARCH</h1><form id="level-search-form">
-      <input id="level-search-input" type="search" placeholder="Search for levels..." class="form-control" required><button type="submit">SEARCH</button></form><div id="level-results" aria-live="polite"></div></section>
-    
-    <section class="tab-panel" id="panel-about" hidden><h1>ℹ️ ABOUT</h1><br><br><p>This is a simple project, which  
-simply try to look for levels, and view the level id's, profiles among others in the future, this project , Thanks.</section>
+      <h1>🔍 SEARCH</h1>
+      <form id="level-search-form" class="search-form" novalidate>
+        <input id="level-search-input" type="search" placeholder="Search for levels..." autocomplete="off" required>
+        <button type="submit">SEARCH</button>
+      </form>
+      <div id="level-results" aria-live="polite"></div>
+    </section>
+
     <section class="tab-panel" id="panel-top-players" hidden>
-      <!--TOP GLOBALES-->
-      <h1>🏆 TOP BEST PLAYERS IN 2026</h1>
-      <p>THE GOAT'S OF GEOMETRY DASH </p>
+      <h1>🏆 TOP PLAYERS</h1>
+      <p class="status" id="top-players-status" role="status" aria-live="polite">Loading live leaderboard…</p>
       <div id="top-players-list" aria-live="polite"></div>
     </section>
-    
-    <!--GUardado de niveles-->
-        <section class="tab-panel" id="panel-saved" hidden>
-          <h1>💾 Saved Level's</h1>
-          <p>Save and play your favorite levels! With the ID</p>
-          <form id="save-level-form" style="display:flex; gap:10px; flex-wrap:wrap; margin: 16px 0 20px;">
-            
 
-          </form>
-          <div id="saved-levels-list" class="content6" style="overflow:hidden;box-sizing: border-box; width: min(650px, calc(100% - 32px)); min-height: 220px; margin: 0 auto 18px; padding: 20px; color: #f5f2ff; font-family: 'Space Grotesk', sans-serif; background: rgba(18, 20, 34, 0.8); border: 1px solid rgba(160, 120, 255, 0.25); border-radius: 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);"></div>
-          <button id="clear-saved-levels" type="button">Delete all ❌</button>
-        </section>
-    <section class="tab-panel" id="panel-demons" hidden><br>      <h1>😈 THE TOP HARDEST EXTREME DEMON'S</h1>
-      <p>THE GOAT'S OF GEOMETRY DASH </p>
-      <div id="top-demons-list" aria-live="polite"></div></div></section>
+    <section class="tab-panel" id="panel-saved" hidden>
+      <h1>💾 SAVED LEVELS</h1>
+      <p>Save the IDs of levels you want to revisit later.</p>
+      <form id="save-level-form" class="save-form" novalidate>
+        <input id="saved-level-input" type="number" min="1" placeholder="Enter level ID" required>
+        <button type="submit">SAVE</button>
+      </form>
+      <div id="saved-levels-list" aria-live="polite"></div>
+      <button id="clear-saved-levels" type="button" style="margin-top: 12px;">Delete all ❌</button>
+    </section>
+    <!--Extreme demons xd-->
+    <section class="tab-panel" id="panel-demons" hidden>
+      <h1>😈 EXTREME DEMONS</h1>
+      <p>Popular names from the Geometry Dash demon scene.</p>
+      <div id="top-demons-list" aria-live="polite"></div>
+    </section>
 
-      
+    <section class="tab-panel" id="panel-about" hidden>
+      <h1>ℹ️ ABOUT</h1>
+      <p>This project is a lightweight Geometry Dash utility to search levels, save IDs, and view the current player leaderboard.</p>
+      <p>It is built as a simple front-end tool using public data from GDBrowser and local browser storage.</p>
+    </section>
+  </main>
+
+  <div class="madeWith">
+    <p>Made with ❤️ By Leon Edits</p>
   </div>
-</body>
-<!--JAVA SCRIPT, LA PARTE QUE MAS ODIOOOOOOOOOOOOOOOOO-->
-<script>
-  // Navegación entre pestañas.
-  const tabs = document.querySelectorAll('.tab-button');
-  const panels = document.querySelectorAll('.tab-panel');
 
-  tabs.forEach((button) => {
-    button.addEventListener('click', () => {
+  <script>
+    //apis y otros
+    const apiBase = 'https://gdbrowser.com/api';
+    const savedLevelsKey = 'gd-browser-saved-levels';
+    const tabs = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    function setActiveTab(tabName) {
       tabs.forEach((tab) => {
-        const active = tab === button;
+        const active = tab.dataset.tab === tabName;
         tab.setAttribute('aria-selected', String(active));
-        tab.style.background = active ? '#8f55ff' : '';
-        tab.style.color = active ? '#fff' : '';
       });
+
       panels.forEach((panel) => {
-        panel.hidden = panel.id !== `panel-${button.dataset.tab}`;
+        panel.hidden = panel.id !== `panel-${tabName}`;
       });
-    });
-  });
-
-  const savedLevelsKey = 'gd-browser-saved-levels';
-
-  function getSavedLevels() {
-    try {
-      const raw = localStorage.getItem(savedLevelsKey);
-      return raw ? JSON.parse(raw) : [];
-    } catch (error) {
-      return [];
-    }
-  }
-
-  function setSavedLevels(levels) {
-    localStorage.setItem(savedLevelsKey, JSON.stringify(levels));
-  }
-
-  function renderSavedLevels() {
-    const container = document.querySelector('#saved-levels-list');
-    if (!container) return;
-    const levels = getSavedLevels();
-    container.replaceChildren();
-
-    if (!levels.length) {
-      const message = document.createElement('p');
-      message.textContent = 'No saved levels yet.';
-      container.appendChild(message);
-      return;
     }
 
-    levels.forEach((level) => {
-      const item = document.createElement('article');
-      item.style.cssText = 'margin-top:12px;padding:14px;background:rgba(143,85,255,.08);border:1px solid rgba(160,120,255,.25);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;';
-
-      const info = document.createElement('div');
-      info.innerHTML = `
-        <h3 style="margin:0 0 4px;">#${level.id}</h3>
-        <p style="margin:0;color:#dcd4ff;">Saved level</p>
-      `;
-
-      const actions = document.createElement('div');
-      actions.style.cssText = 'display:flex; gap:8px; flex-wrap:wrap;';
-
-      const openLink = document.createElement('a');
-      openLink.href = `https://gdbrowser.com/level/${encodeURIComponent(level.id)}`;
-      openLink.target = '_blank';
-      openLink.rel = 'noopener';
-      openLink.textContent = 'Open';
-      openLink.style.cssText = 'display:inline-block;padding:8px 12px;border-radius:8px;background:#8f55ff;color:white;text-decoration:none;';
-
-      const deleteBtn = document.createElement('button');
-      deleteBtn.type = 'button';
-      deleteBtn.textContent = 'Delete';
-      deleteBtn.addEventListener('click', () => {
-        const updated = getSavedLevels().filter((entry) => String(entry.id) !== String(level.id));
-        setSavedLevels(updated);
-        renderSavedLevels();
-      });
-
-      actions.append(openLink, deleteBtn);
-      item.append(info, actions);
-      container.appendChild(item);
+    tabs.forEach((button) => {
+      button.addEventListener('click', () => setActiveTab(button.dataset.tab));
     });
-  }
 
-  function addSavedLevel(levelId) {
-    const id = String(levelId).trim();
-    if (!id || Number.isNaN(Number(id))) return false;
-
-    const levels = getSavedLevels();
-    const exists = levels.some((entry) => String(entry.id) === id);
-    if (exists) return false;
-
-    levels.unshift({ id });
-    setSavedLevels(levels);
-    renderSavedLevels();
-    return true;
-  }
-
-  document.querySelector('#save-level-form')?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const input = document.querySelector('#saved-level-input');
-    if (!input) return;
-
-    const saved = addSavedLevel(input.value);
-    if (saved) {
-      input.value = '';
-    } else {
-      input.focus();
-      input.setCustomValidity('That level is already saved or the ID is invalid.');
-      input.reportValidity();
+    function getSavedLevels() {
+      try {
+        const raw = localStorage.getItem(savedLevelsKey);
+        return raw ? JSON.parse(raw) : [];
+      } catch {
+        return [];
+      }
     }
-  });
 
-  document.querySelector('#clear-saved-levels')?.addEventListener('click', () => {
-    setSavedLevels([]);
-    renderSavedLevels();
-  });
+    function setSavedLevels(levels) {
+      localStorage.setItem(savedLevelsKey, JSON.stringify(levels));
+    }
 
-  // Búsqueda de niveles y jugadores con la API pública de GDBrowser.
-  const apiBase = 'https://gdbrowser.com/api';
+    function addSavedLevel(levelId) {
+      const id = String(levelId).trim();
+      if (!id || Number.isNaN(Number(id))) return false;
 
-  function showMessage(output, text) {
-    output.replaceChildren();
-    const message = document.createElement('p');
-    message.textContent = text;
-    output.appendChild(message);
-  }
-//Resultado
-  function renderResult(output, title, details) {
-    const card = document.createElement('article');
-    card.style.cssText = 'margin-top:12px;padding:14px;background:rgba(143,85,255,.1);border:1px solid rgba(160,120,255,.25);border-radius:10px';
-    const heading = document.createElement('h3');
-    heading.textContent = title;
-    card.appendChild(heading);
-    details.forEach((detail) => {
-      const line = document.createElement('p');
-      line.textContent = detail;
-      card.appendChild(line);
-    });
-    output.appendChild(card);
-  }
-//buscar niveles
-  async function search(query, output, type) {
-    if (!query) return;
-    showMessage(output, 'Searching...');
-    try {
-      const suffix = type === 'users' ? '?type=users' : '';
-      const response = await fetch(`${apiBase}/search/${encodeURIComponent(query)}${suffix}`);
-      if (!response.ok) throw new Error('API request failed');
-      const results = await response.json();
+      const levels = getSavedLevels();
+      const exists = levels.some((entry) => String(entry.id) === id);
+      if (exists) return false;
+
+      levels.unshift({ id });
+      setSavedLevels(levels);
+      renderSavedLevels();
+      return true;
+    }
+
+    function showMessage(output, text) {
       output.replaceChildren();
-      if (!Array.isArray(results) || results.length === 0) {
-        showMessage(output, 'No results found.');
+      const message = document.createElement('p');
+      message.className = 'empty';
+      message.textContent = text;
+      output.appendChild(message);
+    }
+
+    function renderResult(output, title, details) {
+      const card = document.createElement('article');
+      card.className = 'result-card';
+
+      const heading = document.createElement('h3');
+      heading.textContent = title;
+      card.appendChild(heading);
+
+      details.forEach((detail) => {
+        const line = document.createElement('p');
+        line.textContent = detail;
+        card.appendChild(line);
+      });
+
+      output.appendChild(card);
+    }
+    //niveles guardados creo
+    function renderSavedLevels() {
+      const container = document.querySelector('#saved-levels-list');
+      if (!container) return;
+
+      const levels = getSavedLevels();
+      container.replaceChildren();
+
+      if (!levels.length) {
+        const empty = document.createElement('p');
+        empty.className = 'empty';
+        empty.textContent = 'No saved levels yet.';
+        container.appendChild(empty);
         return;
       }
-      results.forEach((item) => {
-        const isUser = type === 'users';
-        renderResult(output, isUser ? (item.username || item.name || 'Unknown player') : (item.name || 'Untitled level'), isUser ? [
-          `Profile: ${item.username || item.name || 'Unknown player'}`,
-          `Player ID: ${item.accountID || item.playerID || 'N/A'}`,
-          `Stars: ${item.stars ?? 'N/A'} · Demons: ${item.demons ?? 'N/A'}`,
-          `Creator points: ${item.cp ?? 'N/A'} · Rank: ${item.rank ?? 'N/A'}`,
-          `User coins: ${item.userCoins ?? item.coins ?? 'N/A'} · Demons completed: ${item.demons ?? 'N/A'}`,
-          `Levels created: ${item.levels ?? item.createdLevels ?? 'N/A'}`
-        ] : [
-          `Creator: ${item.author || 'Unknown'}`,
-          `ID: ${item.id || 'N/A'} · Difficulty: ${item.difficulty || 'Unknown'}`,
-          `Downloads: ${item.downloads ?? 'N/A'} · Likes: ${item.likes ?? 'N/A'}`
-        ]);
-        /*GUARDADO DE NIVELES*/
-        if (!isUser && item.id != null) {
-          const saveButton = document.createElement('button');
-          saveButton.type = 'button';
-          saveButton.textContent = 'Save';
-          saveButton.addEventListener('click', () => {
-            const saved = addSavedLevel(item.id);
-            saveButton.textContent = saved ? 'Saved' : 'Ya guardado / Already saved';
-            saveButton.disabled = true;
-            alert("¡Level Saved! || ¡Nivel Guardado!");
-          });
-          output.lastElementChild.appendChild(saveButton);
-        }
+
+      levels.forEach((level) => {
+        const item = document.createElement('article');
+        item.className = 'list-item saved-item';
+
+        const info = document.createElement('div');
+        info.innerHTML = `<h3>#${level.id}</h3><p>Saved level</p>`;
+
+        const actions = document.createElement('div');
+        actions.className = 'actions';
+
+        const openLink = document.createElement('a');
+        openLink.href = `https://gdbrowser.com/level/${encodeURIComponent(level.id)}`;
+        openLink.target = '_blank';
+        openLink.rel = 'noopener';
+        openLink.textContent = 'Open';
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.type = 'button';
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', () => {
+          const updated = getSavedLevels().filter((entry) => String(entry.id) !== String(level.id));
+          setSavedLevels(updated);
+          renderSavedLevels();
+        });
+
+        actions.append(openLink, deleteBtn);
+        item.append(info, actions);
+        container.appendChild(item);
       });
-    } catch (error) {
-      showMessage(output, 'Search failed. Check your connection and try again.');
     }
-  }
-//
-  document.querySelector('#level-search-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    search(document.querySelector('#level-search-input').value.trim(), document.querySelector('#level-results'), 'levels');
-  });
-  document.querySelector('#profile-search-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    search(document.querySelector('#profile-search-input').value.trim(), document.querySelector('#profile-results'), 'users');
-  });
-//estos son los putos goats
-  const topPlayers = [
-    { rank: 1, name: 'Zoink', badge: '👑', score: 'NIVEL MAXIMO' },
-    { rank: 2, name: 'wPopoff', badge: '⚡', score: 'Gran velocidad' },
-    { rank: 3, name: 'Trick', badge: '🔥', score: 'Estilo de juego' },
-    { rank: 4, name: 'Nexus', badge: '💠', score: 'Precisión' },
-    { rank: 5, name: 'Doggie', badge: '🚀', score: 'Dominio total' }
-  ];
-  const topDemons = [
-    { rank: 1, name: 'GRIEF 🔥', badge: '👑', score: 'THE KING OF HARDEST'},
-    { rank: 2, name: 'Society', badge: '⚡', score: 'THE LEGENDARY DEMON'},
-    { rank: 3, name: 'Thinking Space 2', badge: '🔥', score: 'THE SPEED MASTER'},
-    { rank: 4, name: 'Tidal Wave', badge: '💠', score: 'THE PRECISION CHALLENGE'},
-    { rank: 5, name: 'Flamewall', badge: '🚀', score: 'THE ULTIMATE TEST'},
-    { rank: 6, name: 'SlaughterHause', badge: '💀', score: 'GOOOOOOOOOD LEVEL'}
-  ]
-//top players
-  function renderTopPlayers() {
-    const container = document.querySelector('#top-players-list');
-    if (!container) return;
-    container.replaceChildren();
-    topPlayers.forEach((player) => {
-      const item = document.createElement('article');
-      item.style.cssText = 'margin-top:12px;padding:14px;background:rgba(143,85,255,.08);border:1px solid rgba(160,120,255,.25);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;';
-      item.innerHTML = `
-        <div>
-          <h3 style="margin:0 0 4px;">${player.badge} #${player.rank} ${player.name}</h3>
-          <p style="margin:0;color:#dcd4ff;">${player.score}</p>
-        </div>
-        <span style="font-weight:700;color:#9bffcf;">TOP ${player.rank}</span>
-      `;
-      container.appendChild(item);
-    });
-    //por cierto binox me la re chupa
-  }
-  //demons
-  function renderDemons() {
-    const container = document.querySelector('#top-demons-list');
-    if (!container) return;
-    container.replaceChildren();
-    topDemons.forEach((demon) => {
-      const item = document.createElement('article');
-      item.style.cssText = 'margin-top:12px;padding:14px;background:rgba(143,85,255,.08);border:1px solid rgba(160,120,255,.25);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;';
-      item.innerHTML = `
-        <div>
-          <h3 style="margin:0 0 4px;">${demon.badge} #${demon.rank} ${demon.name}</h3>
-          <p style="margin:0;color:#dcd4ff;">${demon.score}</p>
-        </div>
-        <span style="font-weight:700;color:#9bffcf;">TOP ${demon.rank}</span>
-      `;
-      container.appendChild(item);
-    });
-  }
-//mostrar
-  renderTopPlayers();
-  renderDemons();
-  renderSavedLevels();
 
+    async function searchLevels(query, output) {
+      if (!query) return;
+      showMessage(output, 'Searching...');
 
-  // interfaz xd creo
-  document.querySelectorAll('[data-theme]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const light = button.dataset.theme === 'light';
-      const content = document.querySelector('.content');
-      const header = document.querySelector('.categorias');
-      content.style.background = light ? '#fff' : 'rgba(18, 20, 34, 0.8)';
-      content.style.color = light ? '#211b2b' : '#f5f2ff';
-      header.style.background = light ? 'linear-gradient(135deg, #fff, #eee8fa)' : 'linear-gradient(135deg, #1e1e1e, #29243a)';
-      header.querySelector('h1').style.color = light ? '#211b2b' : '#f5f2ff';
-      document.body.style.backgroundColor = light ? '#f4f1fa' : '';
+      try {
+        const response = await fetch(`${apiBase}/search/${encodeURIComponent(query)}`);
+        if (!response.ok) throw new Error('API request failed');
+
+        const results = await response.json();
+        output.replaceChildren();
+
+        if (!Array.isArray(results) || !results.length) {
+          showMessage(output, 'No results found.');
+          return;
+        }
+
+        results.forEach((item) => {
+          const title = item.name || 'Untitled level';
+          const details = [
+            `Creator: ${item.author || 'Unknown'}`,
+            `ID: ${item.id || 'N/A'} · Difficulty: ${item.difficulty || 'Unknown'}`,
+            `Downloads: ${item.downloads ?? 'N/A'} · Likes: ${item.likes ?? 'N/A'}`
+          ];
+
+          renderResult(output, title, details);
+
+          const lastCard = output.lastElementChild;
+          if (!lastCard || item.id == null) return;
+
+          const saveBtn = document.createElement('button');
+          saveBtn.type = 'button';
+          saveBtn.textContent = 'Save';
+          saveBtn.addEventListener('click', () => {
+            const saved = addSavedLevel(item.id);
+            saveBtn.textContent = saved ? 'Saved' : 'Already saved';
+            saveBtn.disabled = !saved;
+          });
+
+          const actions = document.createElement('div');
+          actions.className = 'actions';
+          actions.appendChild(saveBtn);
+          lastCard.appendChild(actions);
+        });
+      } catch {
+        showMessage(output, 'Search failed. Check your connection and try again.');
+      }
+    }
+    //esta parte si use un poco de ia porque soy pendejo:V
+    document.querySelector('#level-search-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = document.querySelector('#level-search-input');
+      const query = input ? input.value.trim() : '';
+      if (!query) {
+        input?.focus();
+        return;
+      }
+      searchLevels(query, document.querySelector('#level-results'));
     });
-  });
 
-  // Selección y aviso de archivo .gmd. La validación remota no está disponible.
-  //============================================================================//
-  //CANCELADO POR AHORA XD                                                     //
-  //==========================================================================//
-</script>
-<div class="madeWith">
-<p>Made with ❤️ By Leon Edits</p></div>
+    document.querySelector('#save-level-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = document.querySelector('#saved-level-input');
+      if (!input) return;
+
+      const value = input.value.trim();
+      if (!value) {
+        input.focus();
+        return;
+      }
+
+      const added = addSavedLevel(value);
+      if (added) {
+        input.value = '';
+      } else {
+        input.setCustomValidity('Invalid or duplicate level ID.');
+        input.reportValidity();
+      }
+    });
+
+    document.querySelector('#clear-saved-levels')?.addEventListener('click', () => {
+      setSavedLevels([]);
+      renderSavedLevels();
+    });
+    //Esto aun no se actualiza en tiempo real xd pero ya que tocara hacerlo dps
+    const topPlayersUrl = `${apiBase}/leaderboard?type=stars`;
+    const topDemons = [
+      { rank: 1, name: 'GRIEF', badge: '👑', score: 'The king of hardest' },
+      { rank: 2, name: 'Society', badge: '⚡', score: 'Legendary demon' },
+      { rank: 3, name: 'Thinking Space 2', badge: '🔥', score: 'Speed master' },
+      { rank: 4, name: 'Tidal Wave', badge: '💠', score: 'Precision challenge' },
+      { rank: 5, name: 'Flamewall', badge: '🚀', score: 'Ultimate test' },
+      { rank: 6, name: 'SlaughterHouse', badge: '💀', score: 'Hard and iconic' }
+    ];
+    //render top globales
+    function renderTopPlayers(players) {
+      const container = document.querySelector('#top-players-list');
+      if (!container) return;
+      container.replaceChildren();
+
+      players.slice(0, 10).forEach((player, index) => {
+        const item = document.createElement('article');
+        item.className = 'list-item';
+        item.style.display = 'flex';
+        item.style.justifyContent = 'space-between';
+        item.style.alignItems = 'center';
+        item.style.gap = '12px';
+
+        const info = document.createElement('div');
+        const heading = document.createElement('h3');
+        heading.textContent = `${index === 0 ? '👑' : '🏆'} #${index + 1} ${player.username || player.name || 'Unknown player'}`;
+        const stats = document.createElement('p');
+        stats.textContent = `${Number(player.stars || 0).toLocaleString()} stars · ${Number(player.demons || 0).toLocaleString()} demons`;
+        info.append(heading, stats);
+
+        const rank = document.createElement('span');
+        rank.style.fontWeight = '700';
+        rank.style.color = '#9bffcf';
+        rank.textContent = `TOP ${index + 1}`;
+
+        item.append(info, rank);
+        container.appendChild(item);
+      });
+    }
+    //actualizar top globales xd
+    async function updateTopPlayers() {
+      const status = document.querySelector('#top-players-status');
+      const list = document.querySelector('#top-players-list');
+
+      try {
+        const response = await fetch(`${topPlayersUrl}&_=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Leaderboard request failed');
+
+        const players = await response.json();
+        if (!Array.isArray(players) || !players.length) throw new Error('No leaderboard data');
+
+        renderTopPlayers(players);
+        if (status) status.textContent = `Live · Updated ${new Date().toLocaleTimeString()}. Refreshes every 40 seconds.`;
+      } catch {
+        if (status) status.textContent = 'Could not load the live leaderboard. Retrying in 40 seconds.';
+        if (list && !list.children.length) {
+          showMessage(list, 'Leaderboard unavailable. Check your connection and try again.');
+        }
+      }
+    }
+    //aqui estan mis demonios internos digo digo extreme demons
+    function renderDemons() {
+      const container = document.querySelector('#top-demons-list');
+      if (!container) return;
+      container.replaceChildren();
+
+      topDemons.forEach((demon) => {
+        const item = document.createElement('article');
+        item.className = 'list-item';
+        item.style.display = 'flex';
+        item.style.justifyContent = 'space-between';
+        item.style.alignItems = 'center';
+        item.style.gap = '12px';
+
+        const info = document.createElement('div');
+        info.innerHTML = `<h3>${demon.badge} #${demon.rank} ${demon.name}</h3><p>${demon.score}</p>`;
+
+        const rank = document.createElement('span');
+        rank.style.fontWeight = '700';
+        rank.style.color = '#9bffcf';
+        rank.textContent = `TOP ${demon.rank}`;
+
+        item.append(info, rank);
+        container.appendChild(item);
+      });
+    }
+    //Binox si ves esto me la chupas
+    setActiveTab('home');
+    renderDemons();
+    renderSavedLevels();
+    updateTopPlayers();
+    window.setInterval(updateTopPlayers, 40000);
+  </script>
+</body>
 </html>
