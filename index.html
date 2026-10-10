@@ -60,7 +60,7 @@
     }
 
     button:hover {
-      transform: translateY(-1px);
+      transform: rotate(4deg);
       box-shadow: 0 0 14px rgba(32, 213, 255, 0.7);
     }
 
@@ -80,6 +80,21 @@
       border-radius: 16px;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
     }
+    .copyRight {
+      width: min(760px, calc(100% - 32px));
+      margin: 40px auto 0;
+      padding: 8px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(135deg, #1e1e1e, #29243a);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
 
     .brand {
       display: flex;
@@ -267,7 +282,7 @@
       </a>
       <br><br><h1>GD FinderDash</h1>
     </div>
-
+ <!--Uf no estaba mal una organizada-->
     <nav class="nav" aria-label="Main navigation">
       <button type="button" class="tab-button" data-tab="home" aria-selected="true">🏠 HOME</button>
       <button type="button" class="tab-button" data-tab="search" aria-selected="false">🔍 SEARCH</button>
@@ -339,7 +354,9 @@
   </main>
 
   <div class="madeWith">
-    <p>Made with ❤️ By Leon Edits</p>
+
+    <h5>Made with ❤️ By Leon Edits</h5>
+    <h6 class="copyRight">© 2026 Leon Studio. All rights reserved.</h6>
   </div>
 
   <script>
@@ -641,3 +658,4 @@
   </script>
 </body>
 </html>
+
